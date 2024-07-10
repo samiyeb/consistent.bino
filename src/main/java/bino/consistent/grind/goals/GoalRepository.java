@@ -1,28 +1,60 @@
 package bino.consistent.grind.goals;
 
-// import org.springframework.jdbc.core.simple.JdbcClient;
-// import org.springframework.stereotype.Repository;
-// import org.springframework.util.Assert;
+import org.springframework.jdbc.core.simple.JdbcClient;
+import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
 
-// import java.util.List;
-// import java.util.Optional;
+import java.util.List;
+import java.util.Optional;
 
+@Repository
 public class GoalRepository {
-    // private final JdbcClient jdbcClient;
+    private final JdbcClient jdbcClient;
 
-    // public GoalRepository(JdbcClient jdbcClient){
-    //     this.jdbcClient = jdbcClient;
-    // }
+    public GoalRepository(JdbcClient jdbcClient){
+        this.jdbcClient = jdbcClient;
+    }
 
-    // List<Goal> retrieveAllGoals();
+    List<Goal> retrieveAllGoals(){
+        return jdbcClient.sql("select * from goal")
+                .query(Goal.class)
+                .list();
+    }
 
-    // Optional<Goal> retrieveGoal(long id);
+    Optional<Goal> retrieveGoal(long id){
+        return jdbcClient.sql("SELECT id, percent, goalName FROM Goal WHERE id = :id" )
+            .param("id", id)
+            .query(Goal.class)
+            .optional();
 
-    // void create(Goal goal);
+    }
 
-    // void update(Goal goal, long id);
+    void create(Goal goal){
+        var updated = jdbcClient.sql("INSERT INTO Run(id, percent, goalName) values(?,?,?)")
+                .params(List.of(goal.id(),(goal.percentage().current() / goal.percentage().end()), goal.goalName()))
+                .update();
 
-    // void delete(long id);
+        Assert.state(updated == 1, "Failed to create goal " + goal.goalName());
+    }
+
+    void update(Goal goal, long id){
+        var updated = jdbcClient.sql("update goal set goalName = ?, percent = ? where id = ?")
+                .params(List.of(goal.id(), (goal.percentage().current() / goal.percentage().end()) , goal.goalName(), id))
+                .update();
+
+        Assert.state(updated == 1, "Failed to update goal " + goal.goalName());
+
+    }
+
+    void delete(long id){
+        var updated = jdbcClient.sql("delete from goal where id = :id")
+                .param("id", id)
+                .update();
+
+        Assert.state(updated == 1, "Failed to delete goal " + id);
+
+
+    }
 
 
 }
