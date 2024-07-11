@@ -15,38 +15,38 @@ public class GoalRepository {
         this.jdbcClient = jdbcClient;
     }
 
-    List<Goal> retrieveAllGoals(){
+    public List<Goal> retrieveAllGoals(){
         return jdbcClient.sql("select * from goal")
                 .query(Goal.class)
                 .list();
     }
 
-    Optional<Goal> retrieveGoal(long id){
-        return jdbcClient.sql("SELECT id, percent, goalName FROM Goal WHERE id = :id" )
+    public Optional<Goal> retrieveGoal(long id){
+        return jdbcClient.sql("SELECT id, goalName FROM Goal WHERE id = :id" )
             .param("id", id)
             .query(Goal.class)
             .optional();
 
     }
 
-    void create(Goal goal){
-        var updated = jdbcClient.sql("INSERT INTO Run(id, percent, goalName) values(?,?,?)")
-                .params(List.of(goal.id(),(goal.percentage().current() / goal.percentage().end()), goal.goalName()))
+    public void create(Goal goal){
+        var updated = jdbcClient.sql("INSERT INTO Goal(id, goalName) values(?,?)")
+                .params(List.of(goal.id(), goal.goalName()))
                 .update();
 
         Assert.state(updated == 1, "Failed to create goal " + goal.goalName());
     }
 
-    void update(Goal goal, long id){
-        var updated = jdbcClient.sql("update goal set goalName = ?, percent = ? where id = ?")
-                .params(List.of(goal.id(), (goal.percentage().current() / goal.percentage().end()) , goal.goalName(), id))
+    public void update(Goal goal, long id){
+        var updated = jdbcClient.sql("update goal set goalName = ? where id = ?")
+                .params(List.of(goal.id(), goal.goalName(), id))
                 .update();
 
         Assert.state(updated == 1, "Failed to update goal " + goal.goalName());
 
     }
 
-    void delete(long id){
+    public void delete(long id){
         var updated = jdbcClient.sql("delete from goal where id = :id")
                 .param("id", id)
                 .update();
@@ -55,6 +55,8 @@ public class GoalRepository {
 
 
     }
+
+    
 
 
 }
