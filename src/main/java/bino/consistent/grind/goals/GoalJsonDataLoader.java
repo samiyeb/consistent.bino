@@ -33,7 +33,7 @@ public class GoalJsonDataLoader implements CommandLineRunner {
                 throw new RuntimeException("Failed to read JSON data", e);
             }
         } else {
-            log.info("Not loading Runs from JSON data because the collection contains data.");
+            log.info("Not loading Goals from JSON data because the collection contains data.");
         }
     }
 
