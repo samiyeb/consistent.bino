@@ -56,6 +56,14 @@ public class GoalRepository {
 
     }
 
+    public int count() {
+        return jdbcClient.sql("select * from goal").query().listOfRows().size();
+    }
+
+    public void saveAll(List<Goal> goals) {
+        goals.stream().forEach(this::create);
+    }
+
     
 
 
