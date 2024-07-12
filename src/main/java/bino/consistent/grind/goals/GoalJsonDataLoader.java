@@ -27,7 +27,7 @@ public class GoalJsonDataLoader implements CommandLineRunner {
         if(goalRepository.count() == 0) {
             try (InputStream inputStream = TypeReference.class.getResourceAsStream("/data/goals.json")) {
                 Goals allGoals = objectMapper.readValue(inputStream, Goals.class);
-                log.info("Reading {} runs from JSON data and saving to in-memory collection.", allGoals.goals().size());
+                log.info("Reading {} goals from JSON data and saving to the database.", allGoals.goals().size());
                 goalRepository.saveAll(allGoals.goals());
             } catch (IOException e) {
                 throw new RuntimeException("Failed to read JSON data", e);
