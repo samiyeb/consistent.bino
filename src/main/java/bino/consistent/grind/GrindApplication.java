@@ -1,10 +1,9 @@
 package bino.consistent.grind;
 
-// import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+// import org.springframework.boot.CommandLineRunner;
 // import org.springframework.context.annotation.Bean;
-
 // import bino.consistent.grind.goals.*;
 
 @SpringBootApplication
