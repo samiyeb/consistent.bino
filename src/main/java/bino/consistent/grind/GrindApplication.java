@@ -2,9 +2,11 @@ package bino.consistent.grind;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-// import org.springframework.boot.CommandLineRunner;
-// import org.springframework.context.annotation.Bean;
-// import bino.consistent.grind.goals.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.boot.CommandLineRunner;
+import bino.consistent.grind.user.*;
+import java.util.List;
+
 
 @SpringBootApplication
 public class GrindApplication {
@@ -13,13 +15,18 @@ public class GrindApplication {
 		SpringApplication.run(GrindApplication.class, args);
 	}
 
-	// @Bean
-	// CommandLineRunner runner(GoalRepository goalRepository) {
-	// 	return args -> {
-	// 		Goal goal = new Goal(1, "I will be king of the pirates!");
-	// 		goalRepository.create(goal);
+	@Bean
+	CommandLineRunner runner(UserRestClient client) {
+		return args -> {
+			List<User> users = client.findAll();
+			User user = client.findById(1);
 
-	// 	};
-	// }
+			System.out.println(users);
+			System.out.println(user);
+
+
+		};
+	}
+
 
 }
