@@ -39,7 +39,7 @@ public class GoalRepository {
 
     public void update(Goal goal, long id){
         var updated = jdbcClient.sql("update goal set goalName = ? where id = ?")
-                .params(List.of(goal.id(), goal.goalName(), id))
+                .params(List.of(goal.goalName(), id))
                 .update();
 
         Assert.state(updated == 1, "Failed to update goal " + goal.goalName());
