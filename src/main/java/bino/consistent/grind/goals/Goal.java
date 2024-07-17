@@ -1,7 +1,7 @@
 package bino.consistent.grind.goals;
 
 public record Goal(
-    long id,
+    Integer id,
     String goalName
 ) {
 

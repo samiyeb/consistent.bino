@@ -21,7 +21,7 @@ public class GoalRepository {
                 .list();
     }
 
-    public Optional<Goal> retrieveGoal(long id){
+    public Optional<Goal> retrieveGoal(Integer id){
         return jdbcClient.sql("SELECT id, goalName FROM Goal WHERE id = :id" )
             .param("id", id)
             .query(Goal.class)
@@ -37,7 +37,7 @@ public class GoalRepository {
         Assert.state(updated == 1, "Failed to create goal " + goal.goalName());
     }
 
-    public void update(Goal goal, long id){
+    public void update(Goal goal, Integer id){
         var updated = jdbcClient.sql("update goal set goalName = ? where id = ?")
                 .params(List.of(goal.goalName(), id))
                 .update();
@@ -46,7 +46,7 @@ public class GoalRepository {
 
     }
 
-    public void delete(long id){
+    public void delete(Integer id){
         var updated = jdbcClient.sql("delete from goal where id = :id")
                 .param("id", id)
                 .update();

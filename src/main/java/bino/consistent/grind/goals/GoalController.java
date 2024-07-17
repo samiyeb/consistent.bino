@@ -23,7 +23,7 @@ public class GoalController {
     }
 
     @GetMapping("/{id}")
-    public Goal retrieveGoal(@PathVariable long id){
+    public Goal retrieveGoal(@PathVariable Integer id){
         Optional<Goal> goal = goalRepository.retrieveGoal(id);
         if(goal.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Goal not found.");
@@ -41,14 +41,14 @@ public class GoalController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    public void update(@RequestBody Goal goal, long id){
+    public void update(@RequestBody Goal goal, Integer id){
         goalRepository.update(goal, id);
         
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void delete(long id){
+    public void delete(Integer id){
         goalRepository.delete(id);
     }
 
