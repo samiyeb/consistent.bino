@@ -12,7 +12,7 @@ Consistent.bino is a project that aims to help track your progression with curre
 1. **Clone the repository:**
    ```sh
    git clone https://github.com/samiyeb/consistent.bino.git
-   cd consistent-bino
+   cd consistent.bino
 
 2. **Setup/Create the application.properties file:**
    ```sh
