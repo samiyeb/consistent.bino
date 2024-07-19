@@ -55,15 +55,17 @@ public class GoalRepositoryTest {
     }
 
     @Test
-    void shouldUpdateRun() {
-        repository.update(new Goal(2, "goal 2 but better"), 2);
+    void shouldUpdateGoal(){
+        Goal goal1 = new Goal(2, "goal 2 but better");
 
-        var goal = repository.retrieveGoal(2).get();
-        assertEquals("goal 2 but better", goal.goalName());
+        repository.update(goal1, 2);
+
+        var goal2 = repository.retrieveGoal(2).get();
+        assertEquals("goal 2 but better", goal2.goalName());
     }
 
     @Test
-    void shouldDeleteRun() {
+    void shouldDeleteGoal() {
         repository.delete(1);
         List<Goal> goals = repository.retrieveAllGoals();
         assertEquals(2, goals.size());

@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS Goal;
 
 CREATE TABLE IF NOT EXISTS Goal (
-   id INT NOT NULL,
-   goalName varchar(255) NOT NULL,
+   id INT,
+   goalName varchar(255),
    PRIMARY KEY (id)
 );

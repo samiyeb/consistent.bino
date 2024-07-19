@@ -59,30 +59,30 @@ public class GoalControllerIntTest {
         assertEquals(201, newGoal.getStatusCodeValue());
     }
 
-    // @Test
-    // void shouldUpdateExistingGoal(){
-    //     Goal goal = restClient.get()
-    //             .uri("/api/goals/1")
-    //             .retrieve()
-    //             .body(Goal.class);
+    @Test
+    void shouldUpdateExistingGoal(){
+        Goal goal = restClient.get()
+                .uri("/api/goals/1")
+                .retrieve()
+                .body(Goal.class);
 
-    //     ResponseEntity<Void> updatedGoal = restClient.put()
-    //             .uri("/api/goals/1")
-    //             .body(goal)
-    //             .retrieve()
-    //             .toBodilessEntity();
+        ResponseEntity<Void> updatedGoal = restClient.put()
+                .uri("/api/goals/1")
+                .body(goal)
+                .retrieve()
+                .toBodilessEntity();
 
-    //     assertEquals(204, updatedGoal.getStatusCodeValue());
-    // }
+        assertEquals(204, updatedGoal.getStatusCodeValue());
+    }
 
-    // @Test
-    // void shouldDeleteGoal() {
-    //     ResponseEntity<Void> goal = restClient.delete()
-    //             .uri("/api/goals/1")
-    //             .retrieve()
-    //             .toBodilessEntity();
+    @Test
+    void shouldDeleteGoal() {
+        ResponseEntity<Void> goal = restClient.delete()
+                .uri("/api/goals/1")
+                .retrieve()
+                .toBodilessEntity();
 
-    //     assertEquals(204, goal.getStatusCodeValue());
-    // }
+        assertEquals(204, goal.getStatusCodeValue());
+    }
 
 }
