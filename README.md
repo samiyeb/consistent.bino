@@ -31,12 +31,13 @@ Consistent.bino is a project that aims to help track your progression with curre
 ### Usage
 Once the application is running, you can access it at http://localhost:8080. Here, you can create an account, set your goals, and start tracking your progress.
 
-## Features (In progress)
-* User authentication and authorization
+## Features
 * Goal setting and tracking
+### Features (IN PROGRESS)
+* Reporting and analytics on goal progress
+* User authentication and authorization
 * Progress visualization
 * Daily reminders and notifications
-* Reporting and analytics on goal progress
 
 ## Contributing
 ### Guidelines
