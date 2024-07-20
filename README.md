@@ -33,7 +33,7 @@ Once the application is running, you can access it at http://localhost:8080. Her
 
 ## Features
 * Goal setting and tracking
-### Features (IN PROGRESS)
+### (IN PROGRESS)
 * Reporting and analytics on goal progress
 * User authentication and authorization
 * Progress visualization
