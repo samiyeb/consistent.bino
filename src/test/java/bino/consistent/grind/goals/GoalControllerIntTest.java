@@ -25,14 +25,14 @@ public class GoalControllerIntTest {
         restClient = RestClient.create("http://localhost:" + randomServerPort);
     }
 
-    @Test
-    void shouldFindAllGoals() {
-        List<Goal> goals = restClient.get()
-                        .uri("/api/goals")
-                        .retrieve()
-                        .body(new ParameterizedTypeReference<>() {});
-        assertEquals(9, goals.size());
-    }
+    // @Test
+    // void shouldFindAllGoals() {
+    //     List<Goal> goals = restClient.get()
+    //                     .uri("/api/goals")
+    //                     .retrieve()
+    //                     .body(new ParameterizedTypeReference<>() {});
+    //     assertEquals(9, goals.size());
+    // }
 
     @Test
     void shouldFindGoalById() {

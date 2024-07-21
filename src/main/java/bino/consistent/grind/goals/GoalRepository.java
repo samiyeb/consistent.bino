@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class GoalRepository {
@@ -21,12 +20,11 @@ public class GoalRepository {
                 .list();
     }
 
-    public Optional<Goal> retrieveGoal(Integer id){
+    public Goal retrieveGoal(Integer id){
         return jdbcClient.sql("SELECT id, goalName FROM Goal WHERE id = :id" )
             .param("id", id)
             .query(Goal.class)
-            .optional();
-
+            .single();
     }
 
     public void create(Goal goal){

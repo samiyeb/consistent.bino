@@ -34,16 +34,10 @@ public class GoalRepositoryTest {
 
     @Test
     void shouldFindGoalWithValidId() {
-        var goal = repository.retrieveGoal(1).get();
-        var goal3 = repository.retrieveGoal(3).get();
+        var goal = repository.retrieveGoal(1);
+        var goal3 = repository.retrieveGoal(3);
         assertEquals("goal 1", goal.goalName());
         assertEquals("goal 3", goal3.goalName());
-    }
-
-    @Test
-    void shouldNotFindGoalWithInvalidId() {
-        var goal = repository.retrieveGoal(24);
-        assertTrue(goal.isEmpty());
     }
 
     @Test
@@ -60,7 +54,7 @@ public class GoalRepositoryTest {
 
         repository.update(goal1, 2);
 
-        var goal2 = repository.retrieveGoal(2).get();
+        var goal2 = repository.retrieveGoal(2);
         assertEquals("goal 2 but better", goal2.goalName());
     }
 
