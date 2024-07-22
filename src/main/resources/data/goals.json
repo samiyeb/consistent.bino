@@ -2,35 +2,43 @@
     "goals": [
         {
             "id": 1,
-            "goalName": "I will be king of the pirates!"
+            "goalTitle": "One Piece",
+            "goalDescription": "I will be king of the pirates!"
         },
         {
             "id": 2,
-            "goalName": "Make a million dollars"
+            "goalTitle": "Money moves",
+            "goalDescription": "Make a million dollars"
         },
         {
             "id": 3,
-            "goalName": "Run a marathon"
+            "goalTitle": "Olympics",
+            "goalDescription": "Run a marathon"
         },
         {
             "id": 4,
-            "goalName": "Get a new car"
+            "goalTitle": "Speed I am speed",
+            "goalDescription": "Get a new car"
         },
         {
             "id": 5,
-            "goalName": "Master spring"
+            "goalTitle": "Java",
+            "goalDescription": "Master spring"
         },
         {
             "id": 6,
-            "goalName": "Get good jump roping"
+            "goalTitle": "Health",
+            "goalDescription": "Get good jump roping"
         },
         {
             "id": 7,
-            "goalName": "Become a indoor rowing champion"
+            "goalTitle": "Health",
+            "goalDescription": "Become a indoor rowing champion"
         },
         {
             "id": 8,
-            "goalName": "Finish one piece"
+            "goalTitle": "Anime",
+            "goalDescription": "Finish one piece"
         }
     ]
 
