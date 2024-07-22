@@ -21,9 +21,9 @@ public class GoalRepositoryTest {
 
     @BeforeEach
     void setUp(){
-        repository.create(new Goal(1, "goal 1"));
-        repository.create(new Goal(2, "goal 2"));
-        repository.create(new Goal(3, "goal 3"));
+        repository.create(new Goal(1, "first goal", "goal 1"));
+        repository.create(new Goal(2, "second goal", "goal 2"));
+        repository.create(new Goal(3, "third goal", "goal 3"));
     }
 
     @Test
@@ -36,13 +36,13 @@ public class GoalRepositoryTest {
     void shouldFindGoalWithValidId() {
         var goal = repository.retrieveGoal(1);
         var goal3 = repository.retrieveGoal(3);
-        assertEquals("goal 1", goal.goalName());
-        assertEquals("goal 3", goal3.goalName());
+        assertEquals("first goal:goal 1", goal.get().getGoalName());
+        assertEquals("third goal:goal 3", goal3.get().getGoalName());
     }
 
     @Test
     void shouldCreateNewGoal() {
-        repository.create(new Goal(4, "goal 4"));
+        repository.create(new Goal(4, "fourth", "goal 4"));
 
         List<Goal> goals = repository.retrieveAllGoals();
         assertEquals(4, goals.size());
@@ -50,12 +50,12 @@ public class GoalRepositoryTest {
 
     @Test
     void shouldUpdateGoal(){
-        Goal goal1 = new Goal(2, "goal 2 but better");
+        Goal goal1 = new Goal(2, "second goal", "goal 2 but better");
 
         repository.update(goal1, 2);
 
         var goal2 = repository.retrieveGoal(2);
-        assertEquals("goal 2 but better", goal2.goalName());
+        assertEquals("second goal:goal 2 but better", goal2.get().getGoalName());
     }
 
     @Test

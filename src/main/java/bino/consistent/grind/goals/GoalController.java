@@ -2,10 +2,11 @@ package bino.consistent.grind.goals;
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-// import org.springframework.hateoas.EntityModel;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 import jakarta.validation.Valid;
@@ -36,27 +37,49 @@ public class GoalController {
 
     @GetMapping("/{id}")
     public EntityModel<Goal> retrieveGoal(@PathVariable Integer id){
-        Goal goal = goalRepository.retrieveGoal(id);
+        Goal goal = goalRepository.retrieveGoal(id).orElseThrow(() -> new GoalNotFoundException());
         return assembler.toModel(goal);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void create(@Valid @RequestBody Goal goal){
-        goalRepository.create(goal);
-    }
+    public ResponseEntity<?> create(@RequestBody Goal goal) {
 
+        EntityModel<Goal> entityModel = assembler.toModel(goalRepository.save(goal));
+
+        return ResponseEntity
+            .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+            .body(entityModel);
+    }
+    
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    public void update(@Valid @RequestBody Goal goal, @PathVariable Integer id){
-        goalRepository.update(goal, id);
+    public ResponseEntity<?> update(@Valid @RequestBody Goal newGoal, @PathVariable Integer id) {
+    
+        Goal updated = goalRepository.retrieveGoal(id) //
+            .map(goal -> {
+                goal.setGoalTitle(newGoal.getGoalTitle());
+                goal.setGoalDescription(newGoal.getGoalDescription());
+                goalRepository.update(goal, id);
+                return goal;
+            }) //
+            .orElseGet(() -> {
+                return newGoal;
+            });
         
+        EntityModel<Goal> entityModel = assembler.toModel(updated);
+        
+        return ResponseEntity //
+            .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) //
+            .body(entityModel);
     }
+
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id){
+    public ResponseEntity<?> delete(@PathVariable Integer id){
         goalRepository.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
