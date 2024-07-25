@@ -44,7 +44,7 @@ Once the application is running, you can access it at http://localhost:8080.
 ### Version 1.0.2
 Temporarily disabled the implementation of Spring HATEOAS to revamp system design, In
 future versions, the enhanced RESTful service capabilties and improved API evolution
-support with hypermedia-driven outputs will come back soon!
+support with hypermedia-driven outputs will make its return soon!
 ### Version 1.0.1
 Implemented Spring HATEOAS to enhance RESTful service capabilities.
 Improved API evolution support with hypermedia-driven outputs.
