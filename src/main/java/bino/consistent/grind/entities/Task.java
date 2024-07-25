@@ -1,26 +1,40 @@
 package bino.consistent.grind.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Task")
+@Table(name = "tasks")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String title;
+
     private String description;
+
+    @Column(name = "due_date")
     private Date dueDate;
 
     @ManyToOne
+    @JoinColumn(name = "goal_id", nullable = false)
     private Goal goal;
+
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Progress> progresses;
 
     // Getters and setters
     public Long getId() {
@@ -62,5 +76,26 @@ public class Task {
     public void setGoal(Goal goal) {
         this.goal = goal;
     }
+
+    public List<Progress> getProgresses() {
+        return progresses;
+    }
+
+    public void setProgresses(List<Progress> progresses) {
+        this.progresses = progresses;
+    }
+
+    // Method to add a progress
+    public void addProgress(Progress progress) {
+        progresses.add(progress);
+        progress.setTask(this);
+    }
+
+    // Method to remove a progress
+    public void removeProgress(Progress progress) {
+        progresses.remove(progress);
+        progress.setTask(null);
+    }
+
 }
 
