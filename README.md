@@ -40,6 +40,17 @@ Once the application is running, you can access it at http://localhost:8080.
 * Progress visualization
 * Daily reminders and notifications
 
+## Patch Notes
+### Version 1.0.2
+Temporarily disabled the implementation of Spring HATEOAS to revamp system design, In
+future versions, the enhanced RESTful service capabilties and improved API evolution
+support with hypermedia-driven outputs will come back soon!
+### Version 1.0.1
+Implemented Spring HATEOAS to enhance RESTful service capabilities.
+Improved API evolution support with hypermedia-driven outputs.
+### Version 1.0.0
+Initial release with goal setting and bookkeeping features.
+
 ## Contributing
 ### Guidelines
 We welcome contributions! Here are some guidelines to help you get started:
