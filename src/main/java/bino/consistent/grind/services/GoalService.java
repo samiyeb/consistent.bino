@@ -5,36 +5,18 @@ import bino.consistent.grind.entities.*;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
+
 
 @Service
 public class GoalService {
     @Autowired
-    private GoalRepository goalRepository;
+    private final GoalRepository goalRepository;
 
-    // GoalService(GoalRepository goalRepository){
-    //     this.goalRepository = goalRepository;
-    // }
-
-    // public Goal createGoal(Goal goal) {
-    //     return goalRepository.save(goal);
-    // }
-
-    // public List<Goal> getGoalsByUserId(Long userId) {
-    //     return goalRepository.findByUserId(userId);
-    // }
-
-    // public void deleteGoal(Integer id) {
-    //     goalRepository.delete();
-    // }
+    GoalService(GoalRepository goalRepository){
+        this.goalRepository = goalRepository;
+    }
 
     public List<Goal> findAll() {
         return goalRepository.findAll();
@@ -50,14 +32,13 @@ public class GoalService {
     }
 
     
-    public void update(@Valid @RequestBody Goal goal, @PathVariable Long id) {
-        if (goalRepository.existsById(id)){
-            this.delete(id);
-            this.create(goal);
-        }
-        else {
-            this.create(goal);
-        }
+    public Goal update(@Valid @RequestBody Goal newGoal, @PathVariable Long id) {
+        return goalRepository.findById(id).map(goal -> {
+            return goalRepository.save(goal);
+        })
+        .orElseGet(() -> {
+            return goalRepository.save(newGoal);
+        });
     }
 
     
