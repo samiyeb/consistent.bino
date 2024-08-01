@@ -1,23 +1,49 @@
 package bino.consistent.grind.services;
 import bino.consistent.grind.repositories.*;
+import jakarta.validation.Valid;
 import bino.consistent.grind.entities.*;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public Task createTask(Task task) {
+    // Other task-related methods
+    TaskService(TaskRepository taskRepository){
+        this.taskRepository = taskRepository;
+    }
+
+    public List<Task> findAll() {
+        return taskRepository.findAll();
+    }
+
+    public Task findById(@PathVariable Long id) {
+        return taskRepository.findById(id).get();
+    }
+
+    
+    public Task create(@RequestBody Task task) {
         return taskRepository.save(task);
     }
 
-    public List<Task> getTasksByGoalId(Long goalId) {
-        return taskRepository.findByGoalId(goalId);
+    
+    public Task update(@Valid @RequestBody Task newTask, @PathVariable Long id) {
+        return taskRepository.findById(id).map(task -> {
+            return taskRepository.save(task);
+        })
+        .orElseGet(() -> {
+            return taskRepository.save(newTask);
+        });
     }
 
-    // Other task-related methods
+    
+    public void delete(@PathVariable Long id) {
+        taskRepository.deleteById(id);
+    }
 }
