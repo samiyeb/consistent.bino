@@ -1,22 +1,49 @@
 package bino.consistent.grind.services;
 import bino.consistent.grind.repositories.*;
+import jakarta.validation.Valid;
 import bino.consistent.grind.entities.*;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.*;
+
 
 @Service
 public class GoalService {
     @Autowired
-    private GoalRepository goalRepository;
+    private final GoalRepository goalRepository;
 
-    public Goal createGoal(Goal goal) {
+    GoalService(GoalRepository goalRepository){
+        this.goalRepository = goalRepository;
+    }
+
+    public List<Goal> findAll() {
+        return goalRepository.findAll();
+    }
+
+    public Goal findById(@PathVariable Long id) {
+        return goalRepository.findById(id).get();
+    }
+
+    
+    public Goal create(@RequestBody Goal goal) {
         return goalRepository.save(goal);
     }
 
-    public List<Goal> getGoalsByUserId(Long userId) {
-        return goalRepository.findByUserId(userId);
+    
+    public Goal update(@Valid @RequestBody Goal newGoal, @PathVariable Long id) {
+        return goalRepository.findById(id).map(goal -> {
+            return goalRepository.save(goal);
+        })
+        .orElseGet(() -> {
+            return goalRepository.save(newGoal);
+        });
+    }
+
+    
+    public void delete(@PathVariable Long id) {
+        goalRepository.deleteById(id);
     }
 
     // Other goal-related methods
