@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/users/{userId}/goals/{goalId}/tasks")
+@RequestMapping("/api/tasks")
 public class TaskController {
     @Autowired
     private TaskService taskService;
