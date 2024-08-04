@@ -41,6 +41,10 @@ Once the application is running, you can access it at http://localhost:8080.
 * Daily reminders and notifications
 
 ## Patch Notes
+### Version 1.0.3
+Completed backend prototype for the Goal tracking progression application by having a user
+with a specfic id to create a goal and create tasks for that goal. More updates will come 
+for backend, frontend development will be introduced for the project!
 ### Version 1.0.2
 Temporarily disabled the implementation of Spring HATEOAS to revamp system design, In
 future versions, the enhanced RESTful service capabilties and improved API evolution
