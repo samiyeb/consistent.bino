@@ -1,15 +1,14 @@
 package bino.consistent.grind.controllers;
 import bino.consistent.grind.entities.*;
 import bino.consistent.grind.services.*;
+
 import jakarta.validation.Valid;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 
 @RestController
 @RequestMapping("/api/goals")

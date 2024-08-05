@@ -1,13 +1,14 @@
 package bino.consistent.grind.services;
 import bino.consistent.grind.repositories.*;
-import jakarta.validation.Valid;
 import bino.consistent.grind.entities.*;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
-
 
 @Service
 public class GoalService {
@@ -26,12 +27,10 @@ public class GoalService {
         return goalRepository.findById(id).get();
     }
 
-    
     public Goal create(@RequestBody Goal goal) {
         return goalRepository.save(goal);
     }
 
-    
     public Goal update(@Valid @RequestBody Goal newGoal, @PathVariable Long id) {
         return goalRepository.findById(id).map(goal -> {
             return goalRepository.save(goal);
@@ -41,11 +40,8 @@ public class GoalService {
         });
     }
 
-    
     public void delete(@PathVariable Long id) {
         goalRepository.deleteById(id);
     }
-
-    // Other goal-related methods
 }
 

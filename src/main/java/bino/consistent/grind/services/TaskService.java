@@ -1,20 +1,20 @@
 package bino.consistent.grind.services;
 import bino.consistent.grind.repositories.*;
-import jakarta.validation.Valid;
 import bino.consistent.grind.entities.*;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @Service
 public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    // Other task-related methods
     TaskService(TaskRepository taskRepository){
         this.taskRepository = taskRepository;
     }
@@ -32,7 +32,6 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    
     public Task update(@Valid @RequestBody Task newTask, @PathVariable Long id) {
         return taskRepository.findById(id).map(task -> {
             return taskRepository.save(task);
@@ -41,7 +40,6 @@ public class TaskService {
             return taskRepository.save(newTask);
         });
     }
-
     
     public void delete(@PathVariable Long id) {
         taskRepository.deleteById(id);

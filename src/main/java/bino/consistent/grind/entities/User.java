@@ -2,14 +2,7 @@ package bino.consistent.grind.entities;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -30,7 +23,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Goal> goals;
 
-    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -71,12 +63,10 @@ public class User {
         this.goals = goals;
     }
 
-    // Method to add a goal
     public void addGoal(Goal goal) {
         goals.add(goal);
     }
 
-    // Method to remove a goal
     public void removeGoal(Goal goal) {
         goals.remove(goal);
     }
