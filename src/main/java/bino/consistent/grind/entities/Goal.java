@@ -16,6 +16,9 @@ public class Goal {
 
     private String description;
 
+    @Column(nullable = false)
+    private Double progression = 0.0;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -71,6 +74,23 @@ public class Goal {
     public void removeTask(Task task) {
         tasks.remove(task);
         task.setGoal(null);
+    }
+
+    public Double getProgression(){
+        return this.progression;
+    }
+
+    public void setProgression(List<Task> tasks) {
+        Double complete = 0.0;
+        Double total = (double) tasks.size();
+
+        for (int i = 0; i < total; i++) {
+            if (tasks.get(i).isCompleted()) {
+                complete++;
+            }
+        }
+
+        this.progression = ((complete / total) * 100);
     }
 
 }
