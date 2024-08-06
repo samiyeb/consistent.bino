@@ -32,9 +32,9 @@ Consistent.bino is a project that aims to help track your progression with curre
 Once the application is running, you can access it at http://localhost:8080. 
 
 ## Features
-* Goal setting and bookkeeping 
+* Goal setting and bookkeeping
+* Goal progress tracking 
 ### (IN PROGRESS)
-* Goal progress tracking
 * Reporting and analytics on goal progress
 * User authentication and authorization  (Spring Security*)
 * Progress visualization (React.js)
