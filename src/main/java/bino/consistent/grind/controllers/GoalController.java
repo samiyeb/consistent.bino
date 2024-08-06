@@ -30,6 +30,11 @@ public class GoalController {
         return goalService.findById(id);
     }
 
+    @GetMapping("/{id}/progress")
+    public Goal progress(@PathVariable Long id) {
+        return goalService.progress(id);
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Goal create(@RequestBody Goal goal) {
@@ -38,8 +43,8 @@ public class GoalController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    public void update(@Valid @RequestBody Goal goal, @PathVariable Long id) {
-        goalService.update(goal,id);
+    public Goal update(@Valid @RequestBody Goal goal, @PathVariable Long id) {
+        return goalService.update(goal,id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

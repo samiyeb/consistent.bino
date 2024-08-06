@@ -40,6 +40,16 @@ public class TaskService {
             return taskRepository.save(newTask);
         });
     }
+
+    public Task complete(@PathVariable Long id) {
+        Task task = taskRepository.findById(id).orElseThrow();
+
+        if (!(task.isCompleted())) {
+            task.setCompleted(true);
+        }
+
+        return this.update(task, id);
+    }
     
     public void delete(@PathVariable Long id) {
         taskRepository.deleteById(id);

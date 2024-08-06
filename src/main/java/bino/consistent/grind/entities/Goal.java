@@ -80,9 +80,13 @@ public class Goal {
         return this.progression;
     }
 
-    public void setProgression(List<Task> tasks) {
+    public void setProgression() {
         Double complete = 0.0;
         Double total = (double) tasks.size();
+
+        if (total == 0) {
+            this.progression = 0.0;
+        }
 
         for (int i = 0; i < total; i++) {
             if (tasks.get(i).isCompleted()) {

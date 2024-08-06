@@ -27,6 +27,13 @@ public class GoalService {
         return goalRepository.findById(id).get();
     }
 
+    public Goal progress(@PathVariable Long id) {
+        Goal goal = goalRepository.findById(id).get();
+        goal.setProgression();
+        return this.update(goal, id);
+
+    }
+
     public Goal create(@RequestBody Goal goal) {
         return goalRepository.save(goal);
     }

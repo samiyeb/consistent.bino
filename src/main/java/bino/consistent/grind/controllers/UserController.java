@@ -38,8 +38,8 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    public void update(@Valid @RequestBody User user, @PathVariable Long id) {
-        userService.update(user,id);
+    public User update(@Valid @RequestBody User user, @PathVariable Long id) {
+        return userService.update(user,id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
