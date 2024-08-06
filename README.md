@@ -42,7 +42,7 @@ Once the application is running, you can access it at http://localhost:8080.
 
 ## Patch Notes
 ### Version 1.0.3
-Completed backend prototype for the Goal tracking progression application by having a user
+Completed backend prototype for the Goal tracking progression application by having users
 with a specfic id to create a goal and create tasks for that goal. More updates will come 
 for backend, frontend development will be introduced to the project shortly!
 ### Version 1.0.2
