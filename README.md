@@ -18,9 +18,9 @@ Consistent.bino is a project that aims to help track your progression with curre
    ```sh
    spring.sql.init.mode = always
    spring.jpa.hibernate.ddl-auto = update
-   spring.datasource.url = `<your pqsl url>`
-   spring.datasource.username = `<your psql username>`
-   spring.datasource.password = `<your psql password>`
+   spring.datasource.url = postgresql://localhost:5432/<your psql username>
+   spring.datasource.username = <your psql username>
+   spring.datasource.password = <your psql password>
    spring.jpa.show-sql: true
 
 3. **Run the application:**
