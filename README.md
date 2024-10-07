@@ -37,7 +37,7 @@ Once the application is running, you can access it at http://localhost:8080.
 ### (IN PROGRESS)
 * Reporting and analytics on goal progress
 * User authentication and authorization  (Spring Security*)
-* Progress visualization (React.js)
+* Progress visualization (HTML, CSS, Javascript)
 * Daily reminders and notifications
 
 ## Patch Notes
