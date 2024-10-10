@@ -1,0 +1,10 @@
+services:
+  postgres:
+    container_name: 'guide-postgres'
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=postgres'
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=0'
+    ports:
+      - '5432:5432'

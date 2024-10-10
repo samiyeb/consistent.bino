@@ -23,9 +23,9 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public Task findById(@PathVariable Long id) {
-        return taskRepository.findById(id).get();
-    }
+    // public Task findById(@PathVariable Long id) {
+    //     return taskRepository.findById(id).get();
+    // }
 
     
     public Task create(@RequestBody Task task) {
@@ -53,5 +53,17 @@ public class TaskService {
     
     public void delete(@PathVariable Long id) {
         taskRepository.deleteById(id);
+    }
+
+    public List<Task> findByGoal(Goal goal) {
+        return taskRepository.findByGoal(goal);
+    }
+
+    public Task save(Task task) {
+        return taskRepository.save(task);
+    }
+
+    public Task findById(Long id) {
+        return taskRepository.findById(id).orElse(null);
     }
 }

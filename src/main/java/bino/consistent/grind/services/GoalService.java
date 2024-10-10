@@ -23,9 +23,9 @@ public class GoalService {
         return goalRepository.findAll();
     }
 
-    public Goal findById(@PathVariable Long id) {
-        return goalRepository.findById(id).get();
-    }
+    // public Goal findById(@PathVariable Long id) {
+    //     return goalRepository.findById(id).get();
+    // }
 
     public Goal progress(@PathVariable Long id) {
         Goal goal = goalRepository.findById(id).get();
@@ -49,6 +49,14 @@ public class GoalService {
 
     public void delete(@PathVariable Long id) {
         goalRepository.deleteById(id);
+    }
+
+    public Goal save(Goal goal) {
+        return goalRepository.save(goal);
+    }
+
+    public Goal findById(Long id) {
+        return goalRepository.findById(id).orElse(null);
     }
 }
 

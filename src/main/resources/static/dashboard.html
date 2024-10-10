@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome, <span id="user-name"></span>!</h1>
+    </header>
+
+    <main>
+        <section id="goals">
+            <h2>Your Goals</h2>
+            <ul id="goal-list"></ul>
+            <form id="goal-form">
+                <input type="text" id="goal-title" placeholder="Goal Title" required>
+                <input type="text" id="goal-description" placeholder="Goal Description" required>
+                <button type="submit">Add Goal</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

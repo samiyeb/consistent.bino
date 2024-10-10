@@ -5,6 +5,7 @@ import bino.consistent.grind.entities.*;
 import jakarta.validation.Valid;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,9 +24,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findById(@PathVariable Long id) {
-        return userRepository.findById(id).get();
+    public User findById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("User with ID " + id + " not found"));
     }
+
 
     public User create(@RequestBody User user) {
         return userRepository.save(user);

@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 public class GoalController {
     @Autowired
     private final GoalService goalService;
+
+    @Autowired
+    private TaskService taskService;
 
     GoalController(GoalService goalService) {
         this.goalService = goalService;
@@ -51,6 +55,31 @@ public class GoalController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         goalService.delete(id);
+    }
+
+    // Get all tasks for a specific goal
+    @GetMapping("/{id}/tasks")
+    public ResponseEntity<List<Task>> getTasksForGoal(@PathVariable Long id) {
+        Goal goal = goalService.findById(id);
+        if (goal != null) {
+            List<Task> tasks = taskService.findByGoal(goal);
+            return ResponseEntity.ok(tasks);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Add a new task to a specific goal
+    @PostMapping("/{id}/tasks")
+    public ResponseEntity<Task> addTaskToGoal(@PathVariable Long id, @RequestBody Task task) {
+        Goal goal = goalService.findById(id);
+        if (goal != null) {
+            task.setGoal(goal); // Associate task with goal
+            Task createdTask = taskService.save(task); // Save the task
+            return ResponseEntity.ok(createdTask);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
 

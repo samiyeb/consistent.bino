@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -54,6 +55,19 @@ public class TaskController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         taskService.delete(id);
+    }
+
+    // Mark a task as complete or incomplete
+    @PatchMapping("/{id}/complete")
+    public ResponseEntity<Task> toggleTaskCompletion(@PathVariable Long id) {
+        Task task = taskService.findById(id);
+        if (task != null) {
+            task.setCompleted(!task.isCompleted()); // Toggle completion status
+            Task updatedTask = taskService.save(task);
+            return ResponseEntity.ok(updatedTask);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }
