@@ -3,10 +3,19 @@
 ## Introduction
 Consistent.bino is a project that aims to help track your progression with current goals you may have in life and help visualize how far/deep you are in your journey.
 
+## Demo
+
+Check out the demo video below to see how the application works in action:
+
+[![Demo Video](https://img.youtube.com/vi/04nrrkYIZMU/maxresdefault.jpg)](https://youtu.be/04nrrkYIZMU)
+
+Click the image above or [watch the video here](https://youtu.be/04nrrkYIZMU).
+
 ### Prerequisites
 - Java Development Kit (JDK) 17 or higher
 - IDE / Text Editor
 - PostgreSQL
+- Docker
 
 ### Steps
 1. **Clone the repository:**
@@ -23,47 +32,34 @@ Consistent.bino is a project that aims to help track your progression with curre
    spring.datasource.password = <your psql password>
    spring.jpa.show-sql: true
 
-3. **Run the application:**
+3. **Setup/Create the compose.yml file:**
+   ```sh
+   services:
+     postgres:
+       container_name: 'guide-postgres'
+       image: 'postgres:latest'
+       environment:
+         - 'POSTGRES_DB=YOUR_DB'
+         - 'POSTGRES_USER=YOUR_USERNAME'
+         - 'POSTGRES_PASSWORD=YOUR_PASSWORD'
+       ports:
+         - '5432:5432'
+
+4. **Run the application:**
+
    ```sh
    ./mvnw spring-boot:run
 
+- If you encounter a "Permission denied" error, you may need to give the `mvnw` script executable permissions on bash:
+
+   ```sh
+   chmod +x ./mvnw
 
 ### Usage
 Once the application is running, you can access it at http://localhost:8080. 
 
 ## Features
 * Goal setting and bookkeeping
-* Goal progress tracking 
-### (IN PROGRESS)
-* Reporting and analytics on goal progress
-* User authentication and authorization  (Spring Security*)
-* Progress visualization (HTML, CSS, Javascript)
-* Daily reminders and notifications
-
-## Patch Notes
-### Version 1.0.3
-Completed backend prototype for the Goal tracking progression application by having users
-with a specfic id to create a goal and create tasks for that goal. More updates will come 
-for backend, frontend development will be introduced to the project shortly!
-### Version 1.0.2
-Temporarily disabled the implementation of Spring HATEOAS to revamp system design, In
-future versions, the enhanced RESTful service capabilties and improved API evolution
-support with hypermedia-driven outputs will make its return soon!
-### Version 1.0.1
-Implemented Spring HATEOAS to enhance RESTful service capabilities.
-Improved API evolution support with hypermedia-driven outputs.
-### Version 1.0.0
-Initial release with goal setting and bookkeeping features.
-
-## Contributing
-### Guidelines
-We welcome contributions! Here are some guidelines to help you get started:
-
-1. Fork the repository.
-2. Create a new branch (git checkout -b feature/your-feature-name).
-3. Make your changes and commit them (git commit -m 'Add some feature').
-4. Push to the branch (git push origin feature/your-feature-name).
-5. Open a pull request.
-
-Please ensure your code follows our coding conventions and is well-tested.
+* Goal progress tracking
+* Progress visualization (HTML, CSS [Bootstrap], Javascript)
 
