@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goals and Tasks Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Goals and Tasks Management</h1>
+         <!-- Add button to go to the User Management page -->
+         <button id="user-management-page-btn" class="btn btn-secondary mb-3">Go to User Management</button>
+        <div class="form-group">
+            <select id="user-select" class="form-control">
+                <option value="">Select a User</option>
+                <!-- User options will be populated here -->
+            </select>
+            <input type="text" id="goal-title" class="form-control mt-2" placeholder="Goal Title" />
+            <textarea id="goal-description" class="form-control mt-2" placeholder="Goal Description"></textarea>
+            <button id="add-goal-btn" class="btn btn-primary mt-3">Add Goal</button>
+        </div>
+
+        <h2 class="mt-5">Goals</h2>
+        <ul id="goal-list" class="list-group"></ul>
+    </div>
+
+    <script src="goals_tasks.js"></script>
+    <script>
+        // Event listener for the button to navigate to User Management page
+        document.getElementById('user-management-page-btn').addEventListener('click', () => {
+            window.location.href = 'index.html'; // Redirect to index.html
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+

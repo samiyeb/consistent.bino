@@ -1,5 +1,7 @@
 package bino.consistent.grind.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +19,7 @@ public class Task {
     private Boolean completed = false;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "goal_id", nullable = false)
     private Goal goal;
 

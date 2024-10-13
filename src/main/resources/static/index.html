@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>User Management</h1>
+        <!-- Add button to go to the Goals and Tasks page -->
+        <button id="goals-tasks-page-btn" class="btn btn-secondary mb-3">Go to Goals and Tasks</button>
+        <div class="form-group">
+            <input type="text" id="username" class="form-control" placeholder="Username" />
+            <input type="email" id="email" class="form-control mt-2" placeholder="Email" />
+            <input type="password" id="password" class="form-control mt-2" placeholder="Password" />
+            <button id="create-user-btn" class="btn btn-primary mt-3">Create User</button>
+        </div>
+        <h2 class="mt-5">Users</h2>
+        <ul id="user-list" class="list-group"></ul>
+    </div>
+
+    <script src="users.js"></script>
+    <script>
+        // Event listener for the button to navigate to Goals and Tasks page
+        document.getElementById('goals-tasks-page-btn').addEventListener('click', () => {
+            window.location.href = 'goals_tasks.html'; // Redirect to goals_tasks.html
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+

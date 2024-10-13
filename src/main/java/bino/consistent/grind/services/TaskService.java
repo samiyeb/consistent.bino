@@ -1,21 +1,21 @@
 package bino.consistent.grind.services;
-import bino.consistent.grind.repositories.*;
-import bino.consistent.grind.entities.*;
+
+import bino.consistent.grind.repositories.TaskRepository;
+import bino.consistent.grind.entities.Task;
+import bino.consistent.grind.entities.Goal;
 
 import jakarta.validation.Valid;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 @Service
 public class TaskService {
-    @Autowired
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
-    TaskService(TaskRepository taskRepository){
+    @Autowired
+    public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
@@ -23,35 +23,44 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public Task findById(@PathVariable Long id) {
-        return taskRepository.findById(id).get();
+    public Task findById(Long id) {
+        return taskRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Task not found with id: " + id));
     }
 
-    
-    public Task create(@RequestBody Task task) {
+    public Task create(Task task) {
         return taskRepository.save(task);
     }
 
-    public Task update(@Valid @RequestBody Task newTask, @PathVariable Long id) {
+    public Task update(@Valid Task newTask, Long id) {
         return taskRepository.findById(id).map(task -> {
+            // Update fields from newTask to task here
+            task.setTitle(newTask.getTitle());
+            task.setDescription(newTask.getDescription());
+            task.setCompleted(newTask.isCompleted()); // Assuming you want to update completion status
             return taskRepository.save(task);
-        })
-        .orElseGet(() -> {
+        }).orElseGet(() -> {
+            newTask.setId(id); // Set the id for the new task
             return taskRepository.save(newTask);
         });
     }
 
-    public Task complete(@PathVariable Long id) {
-        Task task = taskRepository.findById(id).orElseThrow();
-
-        if (!(task.isCompleted())) {
-            task.setCompleted(true);
-        }
-
-        return this.update(task, id);
+    public Task complete(Long id) {
+        Task task = findById(id);
+        task.setCompleted(true);
+        return taskRepository.save(task);
     }
-    
-    public void delete(@PathVariable Long id) {
+
+    public void delete(Long id) {
         taskRepository.deleteById(id);
     }
+
+    public List<Task> findByGoal(Goal goal) {
+        return taskRepository.findByGoal(goal);
+    }
+
+    public Task save(Task task) {
+        return taskRepository.save(task);
+    }
 }
+
