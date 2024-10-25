@@ -61,5 +61,5 @@ Once the application is running, you can access it at http://localhost:8080.
 ## Features
 * Goal setting and bookkeeping
 * Goal progress tracking
-* Progress visualization (HTML, CSS [Bootstrap], Javascript)
+* Progress visualization (HTML, CSS, Javascript)
 
