@@ -1,0 +1,151 @@
+/* General Layout */
+body {
+    background-color: #0f172a; /* Dark navy background for contrast */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e2e8f0;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto; /* Enables scrolling */
+    position: relative;
+}
+
+/* 4K Animated GIF Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('https://media.giphy.com/media/ht4oClZ65E2d5bUtPF/giphy.gif?cid=790b76118ioxw0vr5rx0fdcx8pprqcm50vtj48xvw6cido8u&ep=v1_gifs_search&rid=giphy.gif&ct=g') no-repeat center center/cover;
+    z-index: -1;
+    opacity: 0.35; /* Slight transparency for neon contrast */
+}
+
+/* Center Container */
+.container {
+    max-width: 700px;
+    padding: 2rem;
+    background: rgba(17, 24, 39, 0.85); /* Dark container with slight transparency */
+    border-radius: 10px;
+    border: 2px solid #475569; /* Consistent solid dark border */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+/* Header Styling */
+h1, h2 {
+    color: #38bdf8; /* Bright neon blue for headers */
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #14b8a6; /* Neon teal for subheaders */
+}
+
+/* Form Styling */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid #475569; /* Consistent dark border */
+    border-radius: 0.375rem;
+    color: #e2e8f0;
+    padding: 0.75rem;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #94a3b8;
+}
+
+/* Buttons */
+.btn {
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.75rem 1.75rem;
+    border-radius: 50px;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: #7c3aed; /* Neon purple */
+    color: #e2e8f0;
+    border-color: #7c3aed;
+}
+
+.btn-secondary {
+    background-color: #475569;
+    color: #e2e8f0;
+    border-color: #475569;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    background-color: #8b5cf6; /* Brighter neon on hover */
+    box-shadow: 0px 4px 12px rgba(139, 92, 246, 0.8); /* Adds glow effect */
+}
+
+/* Smaller "Add Task" Button */
+#add-goal-btn {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+}
+
+/* List Styling */
+.list-group-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #334155; /* Consistent dark border */
+    padding: 1rem;
+    font-size: 1rem;
+    color: #cbd5e1;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.list-group-item:hover {
+    box-shadow: 0 4px 12px rgba(17, 24, 39, 0.3);
+}
+
+/* Responsive Styling */
+@media (max-width: 576px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .form-group input, .form-group textarea {
+        font-size: 0.875rem;
+    }
+
+    .btn {
+        font-size: 0.875rem;
+        padding: 0.5rem 1.5rem;
+    }
+}
+
+
+
