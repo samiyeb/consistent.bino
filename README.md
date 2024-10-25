@@ -7,9 +7,9 @@ Consistent.bino is a project that aims to help track your progression with curre
 
 Check out the demo video below to see how the application works in action:
 
-[![Demo Video](https://img.youtube.com/vi/04nrrkYIZMU/maxresdefault.jpg)](https://youtu.be/04nrrkYIZMU)
+[![Demo Video](https://img.youtube.com/vi/HYIML1i0IfM/maxresdefault.jpg)](https://youtu.be/HYIML1i0IfM)
 
-Click the image above or [watch the video here](https://youtu.be/04nrrkYIZMU).
+Click the image above or [watch the video here](https://youtu.be/HYIML1i0IfM).
 
 ### Prerequisites
 - Java Development Kit (JDK) 17 or higher
